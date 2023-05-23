@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+
+enum GameCategory {
+
+    HORROR = 0;
+    FIRST_PERSON_SHOOTER = 1;
+    ROLE_PLAYING_GAME = 2;
+    STRATEGY = 3;
+    ADVENTURE = 4;
+    SIMULATION = 5;
+    
+}
+
+
+message RecommendationRequest {
+
+    int32 user_id = 1;
+    GameCategory category = 5;
+    int32 max_results = 3;
+
+}
+
+
+message GameRecommendation {
+
+    int32 id = 1;
+    string title = 2;
+    string developer = 3;
+    string description = 4;
+    string rating = 5;
+    
+
+}
+
+
+message RecommendationResponse {
+
+    repeated GameRecommendation recommendations = 1;
+
+}
+
+
+service Recommendations {
+
+    rpc Recommend (RecommendationRequest) returns (RecommendationResponse);
+
+}

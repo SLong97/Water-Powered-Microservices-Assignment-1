@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <style>
+    #title {
+        font-size: 60px;
+        color: hsl(141, 53%, 53%);
+        margin-top: -200px;
+    }
+    #has-background {
+        background-color: hsl(142, 52%, 96%);
+    }
+    .game-block {
+      display: none;
+    }
+    .is-grey-lighter {
+        background-color: hsl(0, 0%, 86%);
+    }
+    figure > img {
+      width: 400px;
+    }
+  </style>
+
+<section id="has-background" class="section is-large">
+
+    <h2 id="title" class="title is-3">Game Catalogue</h2>
+    <br>
+    
+
+    <div class="level-item has-text-centered">
+      <div class="columns is-1">
+        <div class="column is-3">
+          <button id="newBtn" class="button is-success is-outlined">New</button>
+        </div>
+        <div class="column is-4">
+          <button id="trendingBtn" class="button is-success is-outlined">Trending</button>
+        </div>
+        <div class="column is-4">
+          <button id="saleBtn" class="button is-success is-outlined">Sale</button>
+        </div>
+      </div>
+    </div> 
+    <br>
+
+  
+
+
+  {% for game in NEW %}
+  <div class="game-block new">
+  <div class="level-item has-text-centered">
+    <div class="tile is-parent is-12">
+      <article class="tile is-child notification is-grey-lighter">
+        <div class="content">
+
+          <div class="columns">
+
+            <div class="column">
+              <figure>
+                <img src="{{ game.cover }}">
+              </figure>
+            </div>
+
+                <div class="column">
+                    <li class="list-item has-text-weight-bold is-size-4">{{ game.title }}</li>
+                    <li class="list-item has-text-weight-bold is-size-6">Developer: {{ game.developer }}<br>Rating: {{ game.rating }}</li>
+                    <div class="columns">
+                      <div class="column">
+                          <li class="list-item has-text-weight-bold is-size-5">{{ game.price }}</li>
+                      </div>
+                    </div>
+                    <li class="list-item has-text-weight-bold is-size-6">{{ game.description }}</li>
+                </div>
+
+          </div>
+
+        </div>
+      </article>
+    </div>
+  </div>
+  </div>
+  {% endfor %}
+
+  {% for game in TRENDING %}
+  <div class="game-block trending">
+  <div class="level-item has-text-centered">
+    <div class="tile is-parent is-12">
+      <article class="tile is-child notification is-grey-lighter">
+        <div class="content">
+
+          <div class="columns">
+
+            <div class="column">
+              <figure>
+                <img src="{{ game.cover }}">
+              </figure>
+            </div>
+
+                <div class="column">
+                    <li class="list-item has-text-weight-bold is-size-4">{{ game.title }}</li>
+                    <li class="list-item has-text-weight-bold is-size-6">Developer: {{ game.developer }}<br>Rating: {{ game.rating }}</li>
+                    <div class="columns">
+                      <div class="column">
+                          <li class="list-item has-text-weight-bold is-size-5">{{ game.price }}</li>
+                      </div>
+                    </div>
+                    <li class="list-item has-text-weight-bold is-size-6">{{ game.description }}</li>
+                </div>
+
+          </div>
+
+        </div>
+      </article>
+    </div>
+  </div>
+  </div>
+  {% endfor %}
+
+  {% for game in SALE %}
+  <div class="game-block sale">
+  <div class="level-item has-text-centered">
+    <div class="tile is-parent is-12">
+      <article class="tile is-child notification is-grey-lighter">
+        <div class="content">
+
+          <div class="columns">
+
+            <div class="column">
+              <figure>
+                <img src="{{ game.cover }}">
+              </figure>
+            </div>
+
+                <div class="column">
+                    <li class="list-item has-text-weight-bold is-size-4">{{ game.title }}</li>
+                    <li class="list-item has-text-weight-bold is-size-6">Developer: {{ game.developer }}<br>Rating: {{ game.rating }}</li>
+                    <div class="columns">
+                      <div class="column">
+                          <li class="list-item has-text-weight-bold is-size-5"><s>{{ game.price }}</s>  {{ game.sale }}</li>
+                      </div>
+                    </div>
+                    <li class="list-item has-text-weight-bold is-size-6">{{ game.description }}</li>
+                </div>
+
+          </div>
+
+        </div>
+      </article>
+    </div>
+  </div>
+  </div>
+  {% endfor %}
+
+  <script>
+    const newBtn = document.getElementById("newBtn");
+    const trendingBtn = document.getElementById("trendingBtn");
+    const saleBtn = document.getElementById("saleBtn");
+
+    const gameBlocks = document.querySelectorAll(".game-block");
+
+    newBtn.addEventListener("click", () => {
+      toggleGameBlocks("new");
+    });
+
+    trendingBtn.addEventListener("click", () => {
+      toggleGameBlocks("trending");
+    });
+
+    saleBtn.addEventListener("click", () => {
+      toggleGameBlocks("sale");
+    });
+
+    function toggleGameBlocks(category) {
+      gameBlocks.forEach(block => {
+        if (block.classList.contains(category)) {
+          block.style.display = "block";
+        } else {
+          block.style.display = "none";
+        }
+      });
+    }
+  </script>
+
+</section> 
+  
+{% endblock %}
+

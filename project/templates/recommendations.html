@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <style>
+    .begin {
+      margin-top: -200px;
+    }
+    .game-block {
+      display: none;
+    }
+  </style>
+
+  <h2 class="title is-3">Games That May Interest You...</h2>
+
+
+  <div class="level-item has-text-centered">
+    <div class="columns is-1">
+      <div class="column is-3">
+        <button id="horrorBtn" class="button is-link is-rounded">Horror</button>
+      </div>
+      <div class="column is-4">
+        <button id="adventureBtn" class="button is-link is-rounded">Adventure</button>
+      </div>
+      <div class="column is-4">
+        <button id="simulationBtn" class="button is-link is-rounded">Simulation</button>
+      </div>
+    </div>
+  </div> 
+
+
+  {% for game in HORROR %}
+  <div class="game-block horror">
+  <div class="level-item has-text-centered">
+    <div class="tile is-parent is-6">
+      <article class="tile is-child notification is-grey-lighter">
+        <div class="content">
+          <ul>
+                <li class="list-item has-text-weight-bold is-size-4">{{ game.title }}</li>
+                <li class="list-item has-text-weight-bold is-size-6">Developer: {{ game.developer }}<br>Rating: {{ game.rating }}</li>
+                <li class="list-item has-text-weight-bold is-size-6">{{ game.description }}</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+  </div>
+  {% endfor %}
+
+  {% for game in ADVENTURE %}
+  <div class="game-block adventure">
+  <div class="level-item has-text-centered">
+    <div class="tile is-parent is-6">
+      <article class="tile is-child notification is-grey-lighter">
+        <div class="content">
+          <ul>
+                <li class="list-item has-text-weight-bold is-size-4">{{ game.title }}</li>
+                <li class="list-item has-text-weight-bold is-size-6">Developer: {{ game.developer }}<br>Rating: {{ game.rating }}</li>
+                <li class="list-item has-text-weight-bold is-size-6">{{ game.description }}</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+  </div>
+  {% endfor %}
+
+  {% for game in SIMULATION %}
+  <div class="game-block simulation">
+  <div class="level-item has-text-centered">
+    <div class="tile is-parent is-6">
+      <article class="tile is-child notification is-grey-lighter">
+        <div class="content">
+          <ul>
+                <li class="list-item has-text-weight-bold is-size-4">{{ game.title }}</li>
+                <li class="list-item has-text-weight-bold is-size-6">Developer: {{ game.developer }}<br>Rating: {{ game.rating }}</li>
+                <li class="list-item has-text-weight-bold is-size-6">{{ game.description }}</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+  </div>
+  {% endfor %}
+
+  <script>
+    const horrorBtn = document.getElementById("horrorBtn");
+    const adventureBtn = document.getElementById("adventureBtn");
+    const simulationBtn = document.getElementById("simulationBtn");
+
+    const gameBlocks = document.querySelectorAll(".game-block");
+
+    horrorBtn.addEventListener("click", () => {
+      toggleGameBlocks("horror");
+    });
+
+    adventureBtn.addEventListener("click", () => {
+      toggleGameBlocks("adventure");
+    });
+
+    simulationBtn.addEventListener("click", () => {
+      toggleGameBlocks("simulation");
+    });
+
+    function toggleGameBlocks(category) {
+      gameBlocks.forEach(block => {
+        if (block.classList.contains(category)) {
+          block.style.display = "block";
+        } else {
+          block.style.display = "none";
+        }
+      });
+    }
+  </script>
+
+  
+{% endblock %}

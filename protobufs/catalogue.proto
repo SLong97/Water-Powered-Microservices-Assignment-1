@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+
+enum GameStatus {
+
+    NEW = 0;
+    TRENDING = 1;
+    SALE = 2;
+    
+}
+
+
+message CatalogueRequest {
+
+    int32 user_id = 1;
+    GameStatus category = 5;
+    int32 max_results = 3;
+
+}
+
+
+message CatalogueRecommendation {
+
+    int32 id = 1;
+    string title = 2;
+    string developer = 3;
+    string description = 4;
+    string rating = 5;
+    string cover = 6;
+    string price = 7;
+    string sale = 8;
+    
+
+}
+
+
+message CatalogueResponse {
+
+    repeated CatalogueRecommendation recommendations = 1;
+
+}
+
+
+service Catalogues {
+
+    rpc Catalogued (CatalogueRequest) returns (CatalogueResponse);
+
+}

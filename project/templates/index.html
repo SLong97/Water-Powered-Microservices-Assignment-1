@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+  .intro {
+    margin-top: -300px;
+  }
+</style>
+
+
+<div class="intro">
+
+  <div class="level-item has-text-centered">
+    <figure class="image is-96x96">
+      <img src="{{ url_for('static', filename='water.png') }}">
+    </figure>
+  </div>
+
+  <h1 class="title">
+    Water Powered
+  </h1>
+
+  <h2 class="subtitle">
+    Video game digital distribution service and storefront.
+  </h2>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+Flask==2.2.3
+Flask-Login==0.6.2
+Flask-SQLAlchemy==3.0.3
+Werkzeug==2.2.3
+SQLAlchemy==2.0.6
+requests==2.25.1
+grpcio==1.51.3
+grpcio-tools==1.30.0
+googleapis-common-protos==1.58.0
+protobuf==3.19.5
+Jinja2
+pika
+blinker
+prometheus-flask-exporter
+psutil

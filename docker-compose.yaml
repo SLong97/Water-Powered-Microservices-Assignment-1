@@ -1,0 +1,69 @@
+version: "3.8"
+services:
+
+
+    rabbitmq:
+        image: rabbitmq:latest
+
+        environment:
+            - RABBITMQ_DEFAULT_USER=admin
+            - RABBITMQ_DEFAULT_PASS=admin
+
+        networks:
+            - microservices
+
+        ports:
+            - 5672:5672
+
+
+    project:
+        build:
+            context: .
+            dockerfile: WebApp.Dockerfile
+
+        depends_on:
+            - rabbitmq
+
+        environment:
+            RECOMMENDATIONS_HOST: recom-service
+            CATALOGUE_HOST: cat-service
+
+        image: flask-web-app
+
+        networks:
+            - microservices
+
+        ports:
+            - 5000:5000
+
+        command: ["./run.sh"]
+        #command: ["./wait-for-it.sh", "-t", "0", "rabbitmq:5672", "--", "python3", "update_import.py", "&&", "flask", "run", "--host", "0.0.0.0"]
+
+
+    recom-service:
+        build:
+
+            context: .
+            dockerfile: Recommendations.Dockerfile
+
+        image: recom-service
+
+        networks:
+            - microservices
+
+    cat-service:
+        build:
+
+            context: .
+            dockerfile: Catalogue.Dockerfile
+
+        image: cat-service
+
+        networks:
+            - microservices
+
+
+
+networks:
+
+    microservices:
