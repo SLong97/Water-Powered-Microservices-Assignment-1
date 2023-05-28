@@ -28,7 +28,16 @@ Implement a portion of the system that includes:
 * 2 or 3 other microservices of your choice (these should be simple, minimal version of
 the microservices to keep your workload smaller)
 
+## Technology
+
+* gRPC
+* RabbitMQ
+* Flask
+* SQLite
+* Python
+* Docker
+
 ## Video Demonstration
 
-https://github.com/SLong97/Water-Powered-Microservices-Assignment-1/assets/91565384/1dd20b82-445c-457b-ac7f-823f151e1ca3
+https://github.com/SLong97/Water-Powered-Microservices-Assignment-1/assets/91565384/53be6d7f-865f-4703-8165-48514a4cb61d
 
